@@ -9,13 +9,17 @@ const textDesc = document.querySelector('desc')
 
 button.addEventListener('click',testebotao);
 
+textTitulo.addEventListener('onkeydown',validateTitulo)
+
 function testebotao(){
     console.log("Teste botão");
 }
 
 
+function validateTitulo(){
+    console.log("Teste titulo");
 
-function checkTitulo{}
+}
 
 
 const personagens = [
