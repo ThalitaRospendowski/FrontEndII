@@ -1,0 +1,232 @@
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,700;1,100;1,200&family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400;1,700&display=swap');
+
+* {
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;    
+}
+
+body{
+    /*width: 100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items: center;*/
+    background-color:#050505;
+}
+
+h1{
+    font-family: 'Roboto';
+    color:#FFFFFF;
+    margin: 30px;
+}
+
+#form {
+    width:100%;
+  
+    background-color:#151515;
+    padding: 80px 0;
+    margin:0;
+  
+    display:flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #form form {
+    width: 90%;
+    max-width: 980px;
+  
+    background-color:#151515;
+    
+    padding: 40px;
+    
+    box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.15), 
+      0px 10px 20px -10px rgba(0, 0, 0, 0.1)
+  }
+    /*.container-inicio {
+
+    background-color:#151515;
+    /*paralax inicio*/
+
+    /*background-image: url(../img/Rectangle_2.svg);   
+    background-attachment: fixed;
+    /*paralax fim
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
+    align-items: center;  
+
+
+
+.inicial {
+    height: 578px;
+    width: 1148px;
+    margin:50px;
+
+}*/
+
+.inputBox{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.inputText{
+    border: 50px;
+    background-color: #1F1F1F;
+    background: #1F1F1F;
+    border:none;
+    outline:none;
+    color:#ffffff;
+    font-size:15px;
+    width:800px;
+    height:40px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-family: 'Roboto';
+}
+
+.inputText:focus ~ .labelInput,
+.inputText:valid ~.labelInput{
+    top:-10px;
+    font-size:12px;
+    color:#FFFFFF;
+}
+
+.labelInput{
+    color: #FFFFFF;
+    position:absolute;
+    top:0px;
+    left:0px;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.error{
+    display: flex;
+    align-items: center;
+    margin-top: 6px;
+    color: #FF6666;
+    font-size: 13px;
+    /*display:none;*/
+}
+
+.error .error-icon{
+    margin-right: 6px;
+    font-size: 15px;
+
+}
+
+.button button{
+    border:none;
+    background-color: #6CE971;
+    padding: 0.50rem 3rem;
+    border-radius: 5px;
+    cursor:pointer;
+    transition: all 0.3s ease;
+}    
+
+.button button a {
+    text-decoration: none;
+    font-weight: 500;
+    color:#FFFFFF;
+}
+
+
+.button input:hover {
+    background-color: #1d6621;
+}
+
+
+#cards{
+    width:90%;
+    max-width: 1280px;
+    margin:auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 10px;    
+  
+   /* display:flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+    margin:150,150,300px;*/
+}
+
+
+.card {
+   /* width: 360px;
+    height:512px;
+    margin:12px;
+    background-color: #151515;
+    border-radius: 12px;
+    overflow:hidden;*/
+    border-radius: 12px;
+    width: 360px;
+    height:512px;   
+    display: flex;
+    flex-direction: column;
+    background-color: #151515;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+
+}
+
+
+.card-header{
+    width: 100%;
+    height:200px;
+    overflow:hidden;
+}
+
+.card-img{
+    width: 360px;
+    height:247px;    
+    min-width: 100%;
+    width: auto;
+    height: 100%;
+    border-radius:12px;
+}
+
+.card-body{
+    height: 170px;
+    padding: 15px;
+    text-align: center;
+    word-wrap: break-word;
+
+}
+
+.card-titulo {
+    height: 29px;
+    width: 312px;
+    left: 24px;
+    top: 271px;
+    font-family: Roboto;
+    border-radius: null px;
+    margin: 15px 0;
+    color: rgba(255, 255, 255, 0.8);
+
+}
+
+.card-texto {
+
+    height: 29px;
+    width: 312px;    
+  
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    /* or 150% */  
+    
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+.card:hover{
+    transform: translateY(-7px);
+}

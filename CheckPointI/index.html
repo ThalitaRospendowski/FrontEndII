@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>    
+
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <section id="form">
+        
+        <form action="">
+            <h1>Criação de Personagem</h1>
+            <div>
+                <div class="inputBox">
+                    <input type="text" name="titulo" id="titulo" class="inputText" required>
+                    <label for="titulo" class="labelInput">Título</label>
+                </div>
+                <span class="error titulo-error">
+                    <i class="bx bx-error-circle error-icon"></i>
+                    <p class="error-text">Informe o título</p>
+                </span>
+            </div>
+            <div>
+                <div class="inputBox">
+                    <input type="text" name="url" id="url" class="inputText" required>
+                    <label for="url" class="labelInput">URL</label>
+                </div>
+                <span class="error url-error">
+                    <i class="bx bx-error-circle error-icon"></i>
+                    <p class="error-text">Informe a imagem</p>
+                </span>
+            </div>
+            <div>
+                <div class="inputBox">
+                    <input type="text" name="desc" id="desc" class="inputText" required>
+                    <label for="desc" class="labelInput">Descrição</label>
+                </div>
+                <span class="error desc-error">
+                    <i class="bx bx-error-circle error-icon"></i>
+                    <p class="error-text">Informe a descrição</p>
+                </span>
+            </div>
+            <div class="button">
+                <button class="button"> <a class="explorar" href="#">Cadastrar</a> </button>
+            </div>
+        </form>
+    </section>
+
+    <main>
+        <div id="cards">
+
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
