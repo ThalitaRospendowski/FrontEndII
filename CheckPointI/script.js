@@ -2,24 +2,53 @@ let button = document.querySelector('button');
 let element = document.querySelector('body');
 let elementcard = document.querySelector('#cards');
 const form = document.querySelector('form');
-const textTitulo = document.querySelector('titulo')
-const textUrl = document.querySelector('url')
-const textDesc = document.querySelector('desc')
+const textTitulo = document.querySelector('#titulo')
+const erroTitulo = document.querySelector('#errortxt')
+const textUrl = document.querySelector('#url')
+const textDesc = document.querySelector('#desc')
 
-
-button.addEventListener('click',testebotao);
-
-textTitulo.addEventListener('onkeydown',validateTitulo)
-
-function testebotao(){
-    console.log("Teste botão");
+var personagensData={
+    titulo:'',
+    url:'',
+    descricao:''
 }
 
 
-function validateTitulo(){
-    console.log("Teste titulo");
+
+textTitulo.addEventListener('keyup', (event) => validarTitulo(event));
+textUrl.addEventListener('keyup', (event) => validarURL(event));
+textDesc.addEventListener('keyup', (event) => validarDescricao(event));
+button.addEventListener('click', (event) => cadastrar(event));
+
+
+function cadastrar(event){
+    
+    event.preventDefault();
+    if (personagensData.titulo == "" ) {
+        console.log('Não preenchido');
+        erroTitulo.addClass('.errorVisible');
+
+    }
+    console.log(personagensData);
 
 }
+
+
+function validarTitulo(event){
+    personagensData.titulo = event.target.value;
+    
+
+}
+
+function validarURL(event){
+    personagensData.url = event.target.value;
+}
+
+function validarDescricao(event){
+    personagensData.descricao = event.target.value;
+}
+
+
 
 
 const personagens = [
