@@ -14,9 +14,9 @@
 <body>
 
 
-    <section id="form">
+    <section class="form">
         
-        <form action="">
+        <form>
             <h1>Criação de Personagem</h1>
             <div>
                 <div class="inputBox">
@@ -25,7 +25,7 @@
                 </div>
                 <span name="errortxt" id="errortxt" class="error titulo-error">
                     <i class="bx bx-error-circle error-icon"></i>
-                    <p class="error-text">Informe o título</p>
+                    <p>Informe o título</p>
                 </span>
             </div>
             <div>
@@ -35,7 +35,7 @@
                 </div>
                 <span class="error url-error">
                     <i class="bx bx-error-circle error-icon"></i>
-                    <p class="error-text">Informe a imagem</p>
+                    <p>Informe a imagem</p>
                 </span>
             </div>
             <div>
@@ -43,14 +43,27 @@
                     <input type="text" name="desc" id="desc" class="inputText riquered" required>
                     <label for="desc" class="labelInput">Descrição</label>
                 </div>
-                <span class="error desc-error">
+                <span class="error">
                     <i class="bx bx-error-circle error-icon"></i>
-                    <p class="error-text">Informe a descrição</p>
+                    <p>Informe a descrição</p>
                 </span>
             </div>
-            <div class="button">
-                <button type="submit" class="button"> <a class="explorar" href="#">Cadastrar</a> </button>
-            </div>
+
+             <!--   <div class="inputBox">
+                    <input type="text" id="url" class="inputText" required minlength="9">
+                    <label for="url" class="labelInput">URL</label>
+                    <i class="bx bx-error-circle error-icon"></i>
+                    <small>Preencha o campo URL</small>
+                </div>
+                <div class="inputBox">
+                    <input type="text" id="desc" class="inputText" required minlength="9">
+                    <label for="desc" class="labelInput">Descrição</label>
+                    <i class="bx bx-error-circle error-icon"></i>
+                    <small">Preencha o campo Descrição</small>
+                </div>-->
+                <div class="button">
+                  <button type="submit" class="button"> <a class="explorar" href="#">Cadastrar</a> </button>
+                </div>
         </form>
     </section>
 

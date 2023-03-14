@@ -22,7 +22,7 @@ h1{
     margin: 30px;
 }
 
-#form {
+.form {
     width:100%;
   
     background-color:#151515;
@@ -34,7 +34,7 @@ h1{
     justify-content: center;
   }
   
-  #form form {
+  .form form {
     width: 90%;
     max-width: 980px;
   
@@ -45,29 +45,7 @@ h1{
     box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.15), 
       0px 10px 20px -10px rgba(0, 0, 0, 0.1)
   }
-    /*.container-inicio {
 
-    background-color:#151515;
-    /*paralax inicio*/
-
-    /*background-image: url(../img/Rectangle_2.svg);   
-    background-attachment: fixed;
-    /*paralax fim
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    text-align: center; 
-    align-items: center;  
-
-
-
-.inicial {
-    height: 578px;
-    width: 1148px;
-    margin:50px;
-
-}*/
 
 .inputBox{
     display: flex;
@@ -112,7 +90,7 @@ h1{
     margin-top: 6px;
     color: #FF6666;
     font-size: 13px;
-    display:none;
+    /*display:none;*/
 }
 
 .errorVisible{
@@ -121,7 +99,7 @@ h1{
     margin-top: 6px;
     color: #FF6666;
     font-size: 13px;
-    /*display:none;*/
+    display:none;
 }
 
 .error .error-icon{
@@ -129,6 +107,21 @@ h1{
     font-size: 15px;
 
 }
+
+
+/*.form div small {
+    display: none;
+  }
+  .form div.error label {
+    color: red;
+  }
+  .form div.error input {
+    border-color: red;
+  }
+  .form div.error small {
+    color: red;
+    display: block;
+  }*/
 
 .button button{
     border:none;
