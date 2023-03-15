@@ -32,9 +32,6 @@ h1{
     display:flex;
     align-items: center;
     justify-content: center;
-
-    flex-direction: column;
-    gap: 12px;
   }
   
   .form form {
@@ -112,29 +109,19 @@ h1{
 }
 
 
-  .form div small {
+/*.form div small {
     display: none;
   }
   .form div.error label {
-    color: #FF6666;
-
-    display: flex;
-    align-items: center;
-    margin-top: 6px;
-    color: #FF6666;
-    font-size: 13px;
-    flex-direction: row;
-
-
-
+    color: red;
   }
   .form div.error input {
-    border-color: #FF6666;;
+    border-color: red;
   }
   .form div.error small {
-    color: #FF6666;;
+    color: red;
     display: block;
-  }
+  }*/
 
 .button button{
     border:none;

@@ -1,4 +1,5 @@
-const Button = document.querySelector('button');
+const button = document.querySelector('button');
+let element = document.querySelector('body');
 let elementcard = document.querySelector('#cards');
 const form = document.querySelector('form');
 const textTitulo = document.querySelector('#titulo')
@@ -9,14 +10,9 @@ const elementsmall = document.querySelector('.small')
 var formErrors={
     titulo:true,
     url:true,
-    desc:true
+    descricao:true
 }
 
-var ItemData = {
-    titulo: '',
-    url: '',
-    descricao:''
-}
 
 // Função que irá checar se todos os Inputs que temos no formulário estão válidos
 function checkFormValidity() {
@@ -26,8 +22,10 @@ function checkFormValidity() {
     // Utilização da função every() para checarmos se todos os valores do nosso Array são falsos, caso todos sejam a função every() irá retornar True, mas se apenas um deles for True a função irá retornar False
     const formValidity = formErrorsArray.every(item => item === false)
 
-    // Parte do código onde habilitamos e desabilitamos o botão do Formulário. Precisamos inverter o valor da variavel "formValidity" justamente por conta dela retornar True caso todos os campos sejam falsos, porém, quando dizemos que o "disabled" do botão é True iremos desabilita-lo. Por isso precisamos inverter esse valor para o botão ser habilitado quando recebermos True na variavel "formValidity", assim ele irá dizer que o botão não está mais desabilitado
-    Button.disabled = !formValidity
+    // Parte do código onde habilitamos e desabilitamos o botão do Formulário. Precisamos inverter o valor da variavel "formValidity" justamente por conta dela retornar True caso todos os campos sejam falsos, porém, 
+    //quando dizemos que o "disabled" do botão é True iremos desabilita-lo. Por isso precisamos inverter esse valor para o botão ser habilitado quando 
+    //recebermos True na variavel "formValidity", assim ele irá dizer que o botão não está mais desabilitado
+    loginButtonRef.disabled = !formValidity
 
 }
 
@@ -36,24 +34,23 @@ function checkFormValidity() {
 function validateInput(inputRef) {
 
     // A função checkValidity() irá verificar se o valor digitado no Input está seguindo as regras que declaramos no Front-end
+    console.log(inputRef)
     const inputValid = inputRef.checkValidity()
     // Iremos obter o elemento pai do nosso Input para colocarmos a classe de Erro quando necessário
     const elementFatherRef = inputRef.parentElement
-
-   //teste
-   // ItemData.titulo = inputRef.target.value
-   // console.log(ItemData.titulo );
 
     // Verificação para saber se o Input é valido ou não
     if(inputValid) {
 
         // Adição de classe de erro no elemento pai do Input para exibirmos a estilização e mensagem de erro
-        elementFatherRef.classList.remove('error')
+        console.log("False: " + elementFatherRef);
+        elementFatherRef.classList.remove('.error')
 
     } else {
 
         // Remoção de classe de erro no elemento pai do Input para escondermos a estilização e mensagem de erro
-        elementFatherRef.classList.add('error')
+        console.log("True: " + elementFatherRef);
+        elementFatherRef.classList.add('.error')
 
     }
 
@@ -74,59 +71,21 @@ function validateInput(inputRef) {
 function login(event) {
 
     // Utilização do preventDefault() para impedirmos o recarregamento da página
+
     event.preventDefault()
 
-    elementcard.innerHTML += `
-    <div class="card">
-       <div class="card-header">
-           <img src="${ItemData.url}" class="card-img"/>
-       </div>
-       <div class="card-body">
-           <h2 class="card-titulo">${ItemData.titulo}</h2>
-           <p class="card-texto">
-               ${ItemData.Desc}
-            </p>
-        </div>
-    </div> `
-
-    ItemData = {
-        titulo: '',
-        url: '',
-        descricao:''
-    }    
-
-    form. reset();
-    Button.disabled = true;
-
+    //
 
 }
 
-function PegarDadosTitulo(event) {
-
-    ItemData.titulo  = event;
-    console.log(ItemData.titulo);
-}
-
-function PegarDadosUrl(event) {
-
-    ItemData.url  = event;
-}
-
-function PegarDadosDesc(event) {
-
-    ItemData.Desc  = event;
-}
 
 
-textTitulo.addEventListener('keyup', (event) => PegarDadosTitulo(event.target.value))
-textUrl.addEventListener('keyup', (event) => PegarDadosUrl(event.target.value))
-textDesc.addEventListener('keyup', (event) => PegarDadosDesc(event.target.value))
 
 
 textTitulo.addEventListener('keyup', (event) => validateInput(textTitulo));
 textUrl.addEventListener('keyup', (event) => validateInput(textUrl));
 textDesc.addEventListener('keyup', (event) => validateInput(textDesc));
-Button.addEventListener('click', (event) => login(event));
+button.addEventListener('click', (event) => login(event));
 
 
 /*function cadastrar(event){
@@ -159,7 +118,7 @@ function validarDescricao(event){
 
 
 
-/*const personagens = [
+const personagens = [
     {
         Titulo:'aaaaaaaaaaaaaaaaaaaaaa',
         URL:'/imgs/img01.jpg',
@@ -215,4 +174,4 @@ for(let personagem of personagens){
         </div>
     </div> `
 
-}*/
+}
