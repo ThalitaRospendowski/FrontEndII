@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do App</title>
+
+  <!-- ---------------- estilos compartilhados entre login e signup ---------------- -->
+  <link rel="stylesheet" href="styles/acesso.css">
+
+  <!-- ---------------------- lógica aplicada no registro -------------------- -->
+  <script src="/scripts/utils.js"></script>
+  <script src="/scripts/signup.js"></script>
+
+</head>
+
+<body>
+
+  <div class="left">
+    <img src="./assets/pessoa-signup.png" alt="">
+  </div>
+  <div class="right">
+    <form class="form">
+      <div class="form-header">
+        <p>To-Do App</p>
+      </div>
+
+      <div>
+          <label for="inputNome">Nome:</label>
+          <input id="inputNome" type="text" required minlength="4" required maxlength="20"></input>
+          <small>Informe o nome corretamente</small>
+      </div>
+
+      <div>
+        <label for="inputSobrenome">Sobrenome:</label>
+        <input id="inputSobrenome" type="text" required minlength="6" required maxlength="50"></input>
+        <small>Informe o sobrenome corretamente</small>
+      </div>
+
+      <div>
+        <label for="inputEmail">Email:</label>
+        <input id="inputEmail" type="email" required minlength="6"></input>
+        <small>Informe o email corretamente</small>
+      </div>
+
+      <div>
+        <label for="inputPassword">Senha:</label>
+        <input id="inputPassword" type="password" required minlength="8"></input>
+        <small>Informe uma senha válida</small>
+      </div>
+      
+      <div>
+        <label for="inputPasswordConf">Repetir senha:</label>
+        <input id="inputPasswordConf" type="email" required minlength="8"></input>
+        <small>Senha não confere</small>
+      </div>      
+
+      <div>
+        <button type="submit">Criar conta</button>
+      </div>
+
+
+    </form>
+    <div class="ingressar">
+      <a href="index.html">Já possui conta? Acesse aqui</a>
+    </div>
+  </div>
+
+  <script src="/scripts/signup.js"></script>
+
+</body>
+
+</html>
