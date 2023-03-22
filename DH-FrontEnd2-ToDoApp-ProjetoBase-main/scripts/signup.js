@@ -9,7 +9,6 @@ const elementPasswordConf = document.querySelector("#inputPasswordConf");
 var formErrors={
     inputNome:true,
     inputSobrenome:true,
-    inputEmail:true,
     inputPassword:true,
     inputPasswordConf:true
 }

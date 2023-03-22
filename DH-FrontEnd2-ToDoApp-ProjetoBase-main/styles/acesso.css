@@ -35,7 +35,7 @@ form:after {
 
 
 input {
-  width: 100%;
+  width: 300px; /*Pass ou de 100% para 300px*/
   padding: .4em .5em;
   background-color: var(--app-grey);
   border: 1px solid var(--app-grey);
@@ -106,8 +106,9 @@ button {
 .form div.error input {
   border-color: #FF6666;;
 }
+
 .form div.error small {
   color: #FF6666;;
   display: block;
-  font-size: .8em;
+  font-size: .6em;
 }
