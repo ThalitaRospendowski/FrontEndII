@@ -1,4 +1,4 @@
-/*const Button = document.querySelector('button');
+const Button = document.querySelector('button');
 const elementEmail    = document.querySelector('#inputEmail');
 const elementPassword = document.querySelector("#inputPassword");
 
@@ -12,25 +12,40 @@ var formErrors={
 
 function validateEmail(email) {
 
-    const mailFatherRef = email.parentElement;
+  const mailFatherRef = email.parentElement;
 
-    console.log('Validade Email')
+  if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.value)) {
+    formErrors.inputEmail = true;
+    mailFatherRef.classList.remove('error');
+    return true;
 
-    if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
-        //console.log('Retorna True')
-        //mailFatherRef.classList.remove('error');
-        return true;
-        
-    }
+  } else {
     console.log('Retorna false')
-       // mailFatherRef.classList.add('error');
-        return false;
-        
+    // mailFatherRef.classList.add('error');
+    formErrors.inputEmail = false;
+    mailFatherRef.classList.add('error');
+    return false;
   }
+}
+
+
+function validatePassword(password) {
+  const passwordFatherRef = password.parentElement;
+
+  if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8}$/.test(password.value)){
+    formErrors.inputPassword = true;
+    passwordFatherRef.classList.remove('error');
+  } else{
+    formErrors.inputPassword = true;
+    passwordFatherRef.classList.add('error');
+  }
+}
 
 
 //Valida os inputs do formulário
 function checkFormValidity(){
+
+  console.log('fUNÇÃO CHECK')
 
     console.log(formErrors);
 
@@ -38,6 +53,8 @@ function checkFormValidity(){
     const formErrorsArray = Object.values(formErrors);
 
     const formValidity = formErrorsArray.every(item => item === false)
+
+    console.log('vALOR DE VALIDITY:' + formValidity)
 
     Button.disabled = !formValidity
 }
@@ -49,7 +66,7 @@ function validateInput(inputRef) {
     const inputValid = inputRef.checkValidity();
     const elementFatherRef = inputRef.parentElement;
 
-      console.log(formErrors);
+      console.log('Função validate Input');
     
 
     if (inputValid) {
@@ -61,23 +78,52 @@ function validateInput(inputRef) {
 
     }
 
-    console.log(inputRef.id);
-
-    if (inputRef.id = inputEmail) {
-
-        console.log('valida email');
-
-        formErrors[inputRef.id] = validateEmail(elementEmail);
-
-
-    }
-
-    else
-
-    formErrors[inputRef.id] = !inputValid;
-
     checkFormValidity();
 
+}
+
+function authUser(event) {
+
+  checkFormValidity();
+   
+  event.preventDefault()
+
+  //Dados para ser enviado a API
+  const userLoginData = {
+    email: elementEmail.value,
+    password: elementPassword.value
+  }
+
+
+  console.log(userLoginData)
+
+  const requestHeaders = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  }
+
+  var requestConfig = {
+    method: 'POST',
+    headers: requestHeaders,
+    body: JSON.stringify(userLoginData)
+  }
+
+  fetch(`https://todo-api.ctd.academy/v1/users/login`,requestConfig).then(
+      response => {
+      if(response.ok) {
+        response.json().then(
+          token => {
+            localStorage.setItem('authToken',token.jwt)
+            console.log(token)
+           /* window.location.href = "tarefas.html";*/
+          }
+        )
+
+      }else {
+        console.log('erro')
+      }
+    }
+  )
 }
 
 function login(event) {
@@ -89,59 +135,9 @@ function login(event) {
     window.location.href = "tarefas.html";
         
 }
-//elementEmail.addEventListener('keyup',(event) => validateEmail(elementEmail));
-elementEmail.addEventListener('keyup',(event) => validateInput(elementEmail));
-elementPassword.addEventListener('keyup',(event) => validateInput(elementPassword));
-Button.addEventListener('click', (event) => login(event));*/
 
-const inputEmailRef = document.querySelector('#inputEmail');
-const inputPasswordRef = document.querySelector('#inputPassword');
-const btnSubmitRef = document.querySelector('button');
 
-const formErrors = {
-  email: true,
-  password: true
-};
-
-function checkFormValidity() {
-  const formErrorsArray = Object.values(formErrors);
-  const formValidity = formErrorsArray.every(item => item === false);
-  console.log(formValidity);
-  btnSubmitRef.disabled = formValidity;
-}
-
-function validateEmail() {
-  const emailValid = inputEmailRef.checkValidity();
-  const regex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
-  if (emailValid && regex.test(inputEmailRef.value)) {
-    inputEmailRef.parentElement.classList.remove('error');
-    formErrors.email = false;
-  } else {
-    inputEmailRef.parentElement.classList.add('error');
-    formErrors.email = true;
-  }
-  checkFormValidity();
-}
-
-function validatePassword() {
-  const passwordValid = inputPasswordRef.checkValidity();
-  const regex = /^(?=.[0-9])(?=.[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8,})$/;
-  if (passwordValid && regex.test(inputPasswordRef.value)) {
-    inputPasswordRef.parentElement.classList.remove('error');
-    formErrors.password = false;
-  } else {
-    inputPasswordRef.parentElement.classList.add('error');
-    formErrors.password = true;
-  }
-  checkFormValidity();
-}
-
-function checkLogin(e) {
-  e.preventDefault();
-}
-
-inputEmailRef.addEventListener('keyup', validateEmail);
-inputPasswordRef.addEventListener('keyup', validatePassword);
-
-btnSubmitRef.addEventListener('click', checkLogin);
-
+elementEmail.addEventListener('keyup',(event) => validateEmail(elementEmail));
+//elementEmail.addEventListener('keyup',(event) => validateInput(elementEmail));
+elementPassword.addEventListener('keyup',(event) => validatePassword(elementPassword));
+Button.addEventListener('click', (event) => authUser(event));
