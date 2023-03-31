@@ -27,6 +27,7 @@ function validatePassword(password) {
       formErrors.inputPassword = true;
       passwordFatherRef.classList.add('error');
     }
+    checkFormValidity()
   }
 
 
@@ -40,12 +41,11 @@ function validatePassword(password) {
       checkFormValidity();
   
     } else {
-      console.log('Retorna false')
-      // mailFatherRef.classList.add('error');
       formErrors.inputEmail = true;
       mailFatherRef.classList.add('error');
       return false;
     }
+    checkFormValidity()
   }
 
   function validateRePassword(rePassword){
@@ -58,6 +58,7 @@ function validatePassword(password) {
         formErrors.inputPasswordConf = true;
         rePasswordFatherRef.classList.add('error');
     }
+    checkFormValidity()
 
   }
 
@@ -70,9 +71,6 @@ function checkFormValidity(){
     const formErrorsArray = Object.values(formErrors);
 
     const formValidity = formErrorsArray.every(item => item === false)
-
-
-    console.log(formErrors);
     
     elementButton.disabled = !formValidity
 }
@@ -94,8 +92,6 @@ function validateInput(inputRef) {
         elementFatherRef.classList.add('error')
 
     }
-
-
     formErrors[inputRef.id] = !inputValid;
 
     checkFormValidity();
@@ -116,21 +112,6 @@ function login(event) {
       password: elementPassword.value
     }
 
-   /*userData.Nome       =  elementName.value;
-    userData.Sobrenome  = elementSobrenome.value;
-    userData.Email      =  elementEmail.value;
-    userData.Password   = elementPassword.value;
-
-
-    
-    /*alert(userData.Nome);
-    alert(userData.Sobrenome);
-    alert(userData.Email);
-    alert(userData.Password);*/
-
-
-    console.log(userData.value);
-
 
     const requestHeaders = {
       'Accept': 'application/json',
@@ -148,6 +129,9 @@ function login(event) {
         if (response.ok){
 
           alert('Usuario cadastrado com sucesso')
+          form.reset();
+          Button.disabled = true;
+          window.location.href = "index.html";
         } else{
           alert('Erro ao cadastrar usuario')
 
@@ -157,10 +141,6 @@ function login(event) {
       }
     )
 
-
-
-    /*window.location.href = "index.html";*/
-        
 }
 
 

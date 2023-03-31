@@ -9,23 +9,23 @@ var formErrors={
 }
 
 
+checkFormValidity()
 
 function validateEmail(email) {
 
   const mailFatherRef = email.parentElement;
 
   if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.value)) {
-    formErrors.inputEmail = true;
+    formErrors.inputEmail = false;
     mailFatherRef.classList.remove('error');
-    return true;
-
+    
   } else {
     console.log('Retorna false')
     // mailFatherRef.classList.add('error');
-    formErrors.inputEmail = false;
+    formErrors.inputEmail = true;
     mailFatherRef.classList.add('error');
-    return false;
   }
+  checkFormValidity()
 }
 
 
@@ -33,28 +33,25 @@ function validatePassword(password) {
   const passwordFatherRef = password.parentElement;
 
   if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8}$/.test(password.value)){
-    formErrors.inputPassword = true;
+    formErrors.inputPassword = false;
     passwordFatherRef.classList.remove('error');
   } else{
     formErrors.inputPassword = true;
     passwordFatherRef.classList.add('error');
   }
+  checkFormValidity()
 }
 
 
 //Valida os inputs do formulário
 function checkFormValidity(){
-
-  console.log('fUNÇÃO CHECK')
-
+  
     console.log(formErrors);
 
     //convert os valores do obejto em array para usar a função every(), disponivel somente para array
     const formErrorsArray = Object.values(formErrors);
 
     const formValidity = formErrorsArray.every(item => item === false)
-
-    console.log('vALOR DE VALIDITY:' + formValidity)
 
     Button.disabled = !formValidity
 }
@@ -65,8 +62,6 @@ function validateInput(inputRef) {
 
     const inputValid = inputRef.checkValidity();
     const elementFatherRef = inputRef.parentElement;
-
-      console.log('Função validate Input');
     
 
     if (inputValid) {
@@ -115,29 +110,20 @@ function authUser(event) {
           token => {
             localStorage.setItem('authToken',token.jwt)
             console.log(token)
-           /* window.location.href = "tarefas.html";*/
+            Button.disabled = true;
+            window.location.href = "tarefas.html";
           }
         )
 
       }else {
-        console.log('erro')
+        alert('erro');
       }
     }
   )
 }
 
-function login(event) {
-
-    console.log('Botão Login');
-
-    event.preventDefault()
-
-    window.location.href = "tarefas.html";
-        
-}
 
 
 elementEmail.addEventListener('keyup',(event) => validateEmail(elementEmail));
-//elementEmail.addEventListener('keyup',(event) => validateInput(elementEmail));
 elementPassword.addEventListener('keyup',(event) => validatePassword(elementPassword));
 Button.addEventListener('click', (event) => authUser(event));
