@@ -116,7 +116,7 @@ function authUser(event) {
         )
 
       }else {
-        alert('erro');
+        alert('Usuário não localizado.');
       }
     }
   )

@@ -1,6 +1,7 @@
 const elementUser = document.querySelector('#user')
 const elementTask = document.querySelector('#novaTarefa')
 const elementAdd  = document.querySelector('#buttonAdd')
+const elementTaskHtml = document.querySelector('#task-pendentes')
 
 
 const authToken = localStorage.getItem('authToken')
@@ -13,12 +14,10 @@ const requestHeaders = {
 
 
   const taskData = {
-    description:'',
+    description: '',
     completed: false
-}  
 
-checkIfAuthTokenExist();
-
+}
 
 function getUserData(){
     
@@ -31,14 +30,11 @@ function getUserData(){
         response => {
             if (response.ok) {
                //preencher HTML
-               console.log(response)
+               getTasks()
             } else {
-                
-                console.log(response)
                 if (response.status === 401) {
                     logout()
                 }
-                //tratar erro
 
             }
         }
@@ -48,25 +44,49 @@ function getUserData(){
 
 function creatTask(){
 
-    console.log('Adicionando Task')
+    console.log(taskData.description)
     
     var requestConfig = {
         method: 'POST',
-        headers: requestHeaders
+        headers: requestHeaders,
+        body: JSON.stringify(taskData)
     }
+
+    
 
     fetch('https://todo-api.ctd.academy/v1/tasks', requestConfig).then (
         response => {
-            if (response.ok){
-                response.json().then(
+            if (response.ok){                
+                  response.json().then(
                     data =>{
-                        console.log(data)
+                        console.log('Resposta de data:' + data)
                     }
                 )
             }
         }
 
     )
+}
+
+function splitTasks(tasks){
+    console.log(tasks)
+
+    tasks.map(tasks => {
+
+        elementTaskHtml.innerHTML += `
+        <li class="tarefa">
+          <div class="not-done"></div>
+          <div class="descricao">
+            <p class="nome">${tasks.description}</p>
+            <p class="timestamp">Criada em: ${tasks.createdAt}</p>
+          </div>
+        </li>
+     
+      `
+
+
+
+    })
 }
 
 
@@ -82,7 +102,9 @@ function getTasks() {
             if (response.ok){
                 response.json().then(
                     tasks => {
-                        console.log(tasks)
+                        
+                        splitTasks(tasks)
+                        
                     }
                 )
             }
@@ -103,18 +125,35 @@ function checkIfAuthTokenExist(){
     if (authToken === null){
         window.location.href = 'index.html'
     } else {
-        console.log('pegou função');
-        //getUserData()
+
+        console.log(taskData)
         getTasks()
     }
 }
 
-function PegarDadosTask (event){
-    taskData.description  = event;
-
-    console.log(taskData)
+function PegarDadosTask (){
+    elementTaskHtml.innerHTML += `
+      <li class="tarefa">
+        <div class="not-done"></div>
+        <div class="descricao">
+          <p class="nome">${taskData.description}</p>
+          <p class="timestamp">${taskData.completed}</p>
+        </div>
+      </li>
+   
+    `
 }
 
 
-elementTask.addEventListener('keyup', (event) => PegarDadosTask(event.target.value))
+function pegarDadosTasks(event) {
+
+    taskData.description  = event;
+
+    console.log(taskData.description)
+}
+
+
+checkIfAuthTokenExist();
+
+elementTask.addEventListener('keyup', (event) => pegarDadosTasks(event.target.value))
 elementAdd.addEventListener('click', (event) => creatTask(event));
