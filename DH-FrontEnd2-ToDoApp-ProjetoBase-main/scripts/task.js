@@ -1,8 +1,7 @@
-const elementUser = document.querySelector('#user')
+const elementUser = document.querySelector('#user') 
 const elementTask = document.querySelector('#novaTarefa')
 const elementAdd  = document.querySelector('#buttonAdd')
 const elementTaskHtml = document.querySelector('#task-pendentes')
-
 
 const authToken = localStorage.getItem('authToken')
 
@@ -11,7 +10,6 @@ const requestHeaders = {
     'Content-Type': 'application/json',
     'Authorization': authToken
   }
-
 
   const taskData = {
     description: '',
@@ -44,13 +42,15 @@ function getUserData(){
 
 function creatTask(){
 
-    console.log(taskData.description)
-    
+    console.log(taskData)
+
+    debugger
+
     var requestConfig = {
         method: 'POST',
         headers: requestHeaders,
         body: JSON.stringify(taskData)
-    }
+    }  
 
     
 
@@ -59,9 +59,12 @@ function creatTask(){
             if (response.ok){                
                   response.json().then(
                     data =>{
-                        console.log('Resposta de data:' + data)
+                        console.log(data)
                     }
                 )
+            }
+            else{
+                console.log('error')
             }
         }
 
@@ -78,17 +81,15 @@ function splitTasks(tasks){
           <div class="not-done"></div>
           <div class="descricao">
             <p class="nome">${tasks.description}</p>
-            <p class="timestamp">Criada em: ${tasks.createdAt}</p>
+            <p class="timestamp">Criada em: ${(tasks.createdAt)}</p>
           </div>
         </li>
      
       `
 
 
-
     })
 }
-
 
 function getTasks() {
 
@@ -111,15 +112,12 @@ function getTasks() {
         }
     )
 
-
 }
-
 
 function logout() {
     window.location.href = 'index.html'
     localStorage.clear
 }
-
 
 function checkIfAuthTokenExist(){
     if (authToken === null){
@@ -144,16 +142,17 @@ function PegarDadosTask (){
     `
 }
 
-
 function pegarDadosTasks(event) {
+
+    
 
     taskData.description  = event;
 
     console.log(taskData.description)
 }
 
-
 checkIfAuthTokenExist();
 
 elementTask.addEventListener('keyup', (event) => pegarDadosTasks(event.target.value))
 elementAdd.addEventListener('click', (event) => creatTask(event));
+
