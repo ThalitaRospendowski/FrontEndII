@@ -2,6 +2,9 @@ const elementUser = document.querySelector('#user')
 const elementTask = document.querySelector('#novaTarefa')
 const elementAdd  = document.querySelector('#buttonAdd')
 const elementTaskHtml = document.querySelector('#task-pendentes')
+const elementConcHtml = document.querySelector('#task-concluidas')
+
+
 
 const authToken = localStorage.getItem('authToken')
 
@@ -9,6 +12,7 @@ const requestHeaders = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'Authorization': authToken
+    
   }
 
   const taskData = {
@@ -71,22 +75,75 @@ function creatTask(){
     )
 }
 
+
+function alterTask(){
+
+    console.log(taskData)
+
+    debugger
+
+    taskData.completed = true
+
+    var requestConfig = {
+        method: 'PUT',
+        headers: requestHeaders,
+        body: JSON.stringify(taskData)
+    }  
+
+    
+
+    fetch('https://todo-api.ctd.academy/v1/tasks', requestConfig).then (
+        response => {
+            if (response.ok){                
+                  response.json().then(
+                    data =>{
+                        console.log(data)
+                    }
+                )
+            }
+            else{
+                console.log('error')
+            }
+        }
+
+    )
+}
+
+
+
+
 function splitTasks(tasks){
     console.log(tasks)
 
-    tasks.map(tasks => {
+    tasks.map(task => {
+
+
+        if (task.completed){
+
+            elementConcHtml.innerHTML += `
+            <li class="tarefa">
+              <div class="done"></div>
+              <div class="descricao">
+                <p class="nome">${task.description}</p>
+                <p class="timestamp">Criada em: ${(task.createdAt)}</p>
+              </div>
+            </li>     
+          `            
+
+        }
+        else{
 
         elementTaskHtml.innerHTML += `
         <li class="tarefa">
           <div class="not-done"></div>
           <div class="descricao">
-            <p class="nome">${tasks.description}</p>
-            <p class="timestamp">Criada em: ${(tasks.createdAt)}</p>
+            <p class="nome">${task.description}</p>
+            <p class="timestamp">Criada em: ${(task.createdAt)}</p>
           </div>
-        </li>
-     
+        </li>     
       `
 
+    }
 
     })
 }
@@ -129,7 +186,7 @@ function checkIfAuthTokenExist(){
     }
 }
 
-function PegarDadosTask (){
+/*function PegarDadosTask (){
     elementTaskHtml.innerHTML += `
       <li class="tarefa">
         <div class="not-done"></div>
@@ -140,7 +197,7 @@ function PegarDadosTask (){
       </li>
    
     `
-}
+}*/
 
 function pegarDadosTasks(event) {
 
