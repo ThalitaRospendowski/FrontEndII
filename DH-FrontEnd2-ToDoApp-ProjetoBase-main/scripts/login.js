@@ -116,7 +116,13 @@ function authUser(event) {
         )
 
       }else {
-        alert('Usuário não localizado.');
+        Swal.fire({
+          title: 'Atenção!',
+          text: 'Usuário não localizado',
+          icon: 'error'
+        })
+
+
       }
     }
   )

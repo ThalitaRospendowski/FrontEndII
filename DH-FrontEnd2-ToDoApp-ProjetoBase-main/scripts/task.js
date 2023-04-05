@@ -20,6 +20,20 @@ const requestHeaders = {
     completed: false
 }
 
+
+window.onload = function() {
+  
+    Swal.fire({
+        icon: 'success',
+        title: 'Seja muito bem-vindo a aplicação To-do',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    
+  };
+
+
+
 function getUserData(){
     
       var requestConfig = {
@@ -59,12 +73,7 @@ function creatTask(){
         method: 'POST',
         headers: requestHeaders,
         body: JSON.stringify(taskData)
-    }  
-
-
-
-
-    
+    }     
 
     fetch('https://todo-api.ctd.academy/v1/tasks', requestConfig).then (
         response => {
@@ -101,9 +110,6 @@ function alterTask(){
 
     taskData.completed = true
     taskData.description = 'Teste'
-
-
-
 
     var requestConfig = {
         method: 'PUT',
@@ -160,9 +166,7 @@ function splitTasks(tasks){
 
     console.log(tasks)
 
-    tasks.map(task => {
-
-        
+    tasks.map(task => {        
         //const dataformat = new Intl.DateTimeFormat('pt-BR').format(task.createdAt)
 
         if (task.completed){
@@ -190,9 +194,7 @@ function splitTasks(tasks){
           </div>
         </li>    
         
-        `
-      
-
+        `    
     }
 
     })
